@@ -6,7 +6,7 @@ import random
 from dotenv import load_dotenv
 
 os.system('clear')
-path_words = "./ocr/txt/temp_txt/"
+path_words = os.getcwd() + "/ocr/txt/temp_txt/"
 mots = os.listdir(path_words)
 mot = random.choice(mots)
 
