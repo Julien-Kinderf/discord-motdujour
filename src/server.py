@@ -5,10 +5,10 @@ import random
 from dotenv import load_dotenv
 
 # Global variables
-pathToWords = os.path.dirname(__file__) + "/../ocr/txt/words"
-pathToUsedWords = os.path.dirname(__file__) + "/../ocr/txt/used_words"
+pathToCurrentDirectory = os.path.realpath(__file__)
+pathToWords = os.path.dirname(pathToCurrentDirectory) + "/../ocr/txt/words"
+pathToUsedWords = os.path.dirname(pathToCurrentDirectory) + "/../ocr/txt/used_words"
 
-print(f"pathToWords = {pathToWords}")
 
 def getword():
     # This function returns a list containing :
@@ -49,7 +49,11 @@ os.system('clear')
 #backToDefault()
 
 # First get the word of the day
+
 wordOfTheDay = getword()
+print(wordOfTheDay)
+
+exit(0)
 
 # Then connect to discord
 load_dotenv()
