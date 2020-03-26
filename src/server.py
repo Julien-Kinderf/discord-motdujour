@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 pathToWords = os.path.dirname(__file__) + "/../ocr/txt/words"
 pathToUsedWords = os.path.dirname(__file__) + "/../ocr/txt/used_words"
 
+
 def getword():
     # This function returns a list containing :
     # - the word of the day
@@ -47,6 +48,9 @@ os.system('clear')
 #backToDefault()
 
 # First get the word of the day
+print(__file__)
+print(f"pathToWords = {pathToWords}")
+
 wordOfTheDay = getword()
 
 # Then connect to discord
