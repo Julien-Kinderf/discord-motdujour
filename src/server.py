@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 pathToWords = os.path.dirname(__file__) + "/../ocr/txt/words"
 pathToUsedWords = os.path.dirname(__file__) + "/../ocr/txt/used_words"
 
-print(f"pathToWords = {pathToWords}")
-
 def getword():
     # This function returns a list containing :
     # - the word of the day
