@@ -49,11 +49,7 @@ os.system('clear')
 #backToDefault()
 
 # First get the word of the day
-
 wordOfTheDay = getword()
-print(wordOfTheDay)
-
-exit(0)
 
 # Then connect to discord
 load_dotenv()
@@ -75,6 +71,7 @@ async def on_ready():
 @bot.command()
 async def quitter(ctx):
     """Leaves the server."""
+    print(f"Closing the bot as asked by {ctx.author.name}")
     await bot.close()
 
 
@@ -82,13 +79,14 @@ async def quitter(ctx):
 async def mot(ctx):
     """Send a random word and it's definition"""
     word = getword()
-    print(f"Le mot trouvé est :\n{word}")
+    #print(f"Le mot trouvé est :\n{word}")
 
     definition = word[1].replace(".\n", '.\n\n*', 1) + '*'
-    word = "__**" + word[0] + " :**__"
+    word = word[0]
 
-    message = f"{word}\n{definition}\n"
+    message = f"__**{word} :**__\n{definition}\n"
     await ctx.send(message)
+    print(f"Word asked by {ctx.author.name} : {word} delivered")
 
 
 bot.run(token)
