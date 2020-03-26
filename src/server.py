@@ -52,9 +52,8 @@ wordOfTheDay = getword()
 # Then connect to discord
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
-print(token)
 
-bot = commands.Bot(command_prefix='?', description="test")
+bot = commands.Bot(command_prefix='=', description="test")
 
 
 @bot.event
@@ -64,9 +63,26 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
+    activity = discord.Activity(name='Confinement Simulator 2020', type=discord.ActivityType.playing)
+    await bot.change_presence(activity=activity)
+
+@bot.command()
+async def quitter(ctx):
+    """Leaves the server."""
     await bot.close()
 
 
+@bot.command()
+async def mot(ctx):
+    """Send a random word and it's definition"""
+    word = getword()
+    print(f"Le mot trouvé est :\n{word}")
+
+    definition = word[1].replace(".\n", '.\n\n*', 1) + '*'
+    word = "__**" + word[0] + " :**__"
+
+    message = f"{word}\n{definition}\n"
+    await ctx.send(message)
 
 
-bot.run('token')
+bot.run(token)
