@@ -28,7 +28,7 @@ def getword():
     #print(f"Sa définition est la suivante : \n{word_text}\n")
 
     # let's move the file to the used words folder
-    os.replace(pathToWords + '/' + word, pathToUsedWords + '/' + word)
+    #os.replace(pathToWords + '/' + word, pathToUsedWords + '/' + word)
     #print(f"==> Mot {word} déplacé dans 'used_words/'")
 
 
@@ -44,7 +44,7 @@ def backToDefault():
 
 
 os.system('clear')
-backToDefault()
+#backToDefault()
 
 # First get the word of the day
 wordOfTheDay = getword()
