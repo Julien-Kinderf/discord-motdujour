@@ -52,6 +52,9 @@ print(__file__)
 print(f"pathToWords = {pathToWords}")
 
 wordOfTheDay = getword()
+print(wordOfTheDay)
+
+exit(0)
 
 # Then connect to discord
 load_dotenv()
