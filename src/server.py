@@ -48,7 +48,7 @@ os.system('clear')
 #backToDefault()
 
 # First get the word of the day
-print(__file__)
+print(os.path.dirname(__file__))
 print(f"pathToWords = {pathToWords}")
 
 wordOfTheDay = getword()
