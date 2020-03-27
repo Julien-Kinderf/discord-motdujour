@@ -73,20 +73,18 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     """Answers to messages"""
-    if message.author == bot.user:
-        return
+    if message.author != bot.user:
+        if ("di" in message.content):
+            index = message.content.index("di") + 2
+            # Si il a dit dit
+            print(message.content[index: index + 1])
+            if (message.content[index: index + 2] == "t "):
+                print("Il a dit dit !")
+                index += 2
+            response = message.content[index:] + " :D"
+            await message.channel.send(response)
 
-    if ("di" in message.content):
-        index = message.content.index("di") + 2
-        # Si il a dit dit
-        print(message.content[index: index + 1])
-        if (message.content[index: index + 2] == "t "):
-            print("Il a dit dit !")
-            index += 2
-        response = message.content[index:] + " :D"
-        await message.channel.send(response)
-
-    bot.process_commands(message)
+    await bot.process_commands(message)
 
 
 @bot.command()
