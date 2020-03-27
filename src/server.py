@@ -86,6 +86,8 @@ async def on_message(message):
         response = message.content[index:] + " :D"
         await message.channel.send(response)
 
+    bot.process_commands(message)
+
 
 @bot.command()
 async def quitter(ctx):
