@@ -74,7 +74,7 @@ async def on_ready():
 async def on_message(message):
     """Answers to messages"""
     if message.author != bot.user:
-        if ("di" in message.content):
+        if ("di" in message.content.lower()):
             index = message.content.index("di") + 2
             # Si il a dit dit
             print(message.content[index: index + 1])
