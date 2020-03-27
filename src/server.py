@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 # Global variables
 pathToCurrentDirectory = os.path.realpath(__file__)
 pathToWords = os.path.dirname(pathToCurrentDirectory) + "/../ocr/txt/words"
-pathToUsedWords = os.path.dirname(pathToCurrentDirectory) + "/../ocr/txt/used_words"
+pathToUsedWords = os.path.dirname(
+    pathToCurrentDirectory) + "/../ocr/txt/used_words"
 
 
 def getword():
@@ -15,7 +16,6 @@ def getword():
     # - the word of the day
     # - it's defintion
     # - the examples
-
 
     # let's choose a random word among all of our words
     word = random.choice(os.listdir(pathToWords))
@@ -26,16 +26,17 @@ def getword():
         word_text = textfile.read()
 
     # let's format it nicely for discord
-    word_text = word_text.replace("\n", " ").replace(".", ".\n").strip().replace("\n ", "\n")
+    word_text = word_text.replace("\n", " ").replace(
+        ".", ".\n").strip().replace("\n ", "\n")
     #print(f"Sa définition est la suivante : \n{word_text}\n")
 
     # let's move the file to the used words folder
     #os.replace(pathToWords + '/' + word, pathToUsedWords + '/' + word)
     #print(f"==> Mot {word} déplacé dans 'used_words/'")
 
-
     result = [word, word_text]
     return(result)
+
 
 def backToDefault():
     # This function is useful only in developpment phase
@@ -44,9 +45,8 @@ def backToDefault():
         os.replace(pathToUsedWords + '/' + word, pathToWords + '/' + word)
 
 
-
 os.system('clear')
-#backToDefault()
+# backToDefault()
 
 # First get the word of the day
 wordOfTheDay = getword()
@@ -65,8 +65,27 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-    activity = discord.Activity(name='Confinement Simulator 2020', type=discord.ActivityType.playing)
+    activity = discord.Activity(
+        name='Confinement Simulator 2020', type=discord.ActivityType.playing)
     await bot.change_presence(activity=activity)
+
+
+@bot.event
+async def on_message(message):
+    """Answers to messages"""
+    if message.author == bot.user:
+        return
+
+    if ("di" in message.content):
+        index = message.content.index("di") + 2
+        # Si il a dit dit
+        print(message.content[index: index + 1])
+        if (message.content[index: index + 2] == "t "):
+            print("Il a dit dit !")
+            index += 2
+        response = message.content[index:] + " :D"
+        await message.channel.send(response)
+
 
 @bot.command()
 async def quitter(ctx):
@@ -85,7 +104,7 @@ async def mot(ctx):
     word = word[0]
 
     message = f"__**{word} :**__\n{definition}\n"
-    await ctx.send(message)
+    # await ctx.send(message)
     print(f"Word asked by {ctx.author.name} : {word} delivered")
 
 
