@@ -104,7 +104,7 @@ async def mot(ctx):
     word = word[0]
 
     message = f"__**{word} :**__\n{definition}\n"
-    # await ctx.send(message)
+    await ctx.send(message)
     print(f"Word asked by {ctx.author.name} : {word} delivered")
 
 
