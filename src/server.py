@@ -72,18 +72,44 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    """Answers to messages"""
-    if message.author != bot.user:
+    if message.author != bot.user:  # On vérifie que le bot ne se répond pas à lui même
+        reponse = ""
+        # GESTTION DU DI
         if ("di" in message.content.lower()):
-            index = message.content.lower().index("di") + 2
-            # Si il a dit dit
-            print(message.content[index: index + 1])
-            if (message.content[index: index + 2] == "t "):
-                print("Il a dit dit !")
-                index += 2
-            response = message.content[index:] + " :D"
-            await message.channel.send(response)
+            i = message.content.lower().index("di")
+            reponse = message.content[i + 2:].strip()
 
+            if(len(reponse) > 2):
+                # On regarde si c'était un di simple ou pas
+                if (reponse.lower()[0] in "stx" and reponse.lower()[1] == ' '):
+                    reponse = reponse[2:].strip()
+
+            if (len(reponse) > 0):
+                # Envoi de la réponse finale
+                print(
+                    f"Sending {reponse} because {message.author} said \"di\"""")
+                await message.channel.send(reponse)
+
+        # GESTTION DU CRI
+        if ("cri" in message.content.lower()):
+            i = message.content.lower().index("cri")
+            reponse = message.content[i + 3:].upper().strip()
+
+            if (len(reponse) > 2):
+                # On regarde si c'était un cri simple ou pas
+                if (reponse[0:2].lower() == "e "):
+                    reponse = reponse[2:].strip()
+
+            # Ajout des points d'exclamation parce qu'il s'agit de bien crier
+            reponse += " !!!"
+
+            if (len(reponse) > 0):
+                # Envoi de la réponse finale
+                print(
+                    f"Sending {reponse} because {message.author} said \"di\"""")
+                await message.channel.send(reponse)
+
+    # Si le message est une commande, elle sera gérée par cette méthode
     await bot.process_commands(message)
 
 
