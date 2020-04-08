@@ -9,3 +9,6 @@ For this functionnality, the server just chooses a random word and displays it p
 
 ### The di/cri functionnaly
 This functionnality is implemented directly in the discord bot and consists in detecting when someone uses the sound "cri" or "di" in a sentence, and answer to it. This is just a lame french joke. Don't do this.
+
+### The coiffeur functionnality
+If someones sends "Quoi", the bot answers Feur. That's it.

@@ -109,6 +109,15 @@ async def on_message(message):
                     f"Sending {reponse} because {message.author} said \"di\"""")
                 await message.channel.send(reponse)
 
+        # GESTION DU COIFFEUR
+        quois = ["quoi", "quoi ?", "quoi?"]
+        if (message.content.lower() in quois):
+            reponse = "Feur !"
+
+            # Envoi de la réponse
+            print(
+                f"Sending {reponse} because {message.author} deserved it")
+            await message.channel.send(reponse)
     # Si le message est une commande, elle sera gérée par cette méthode
     await bot.process_commands(message)
 
